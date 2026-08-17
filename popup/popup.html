@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>GoAlias</title>
+    <style>
+      :root {
+        --goalias-navy: #16324f;
+        --goalias-navy-dark: #0e2338;
+        --goalias-copper: #c9682f;
+        --goalias-copper-dark: #a8501f;
+        --goalias-blue-light: #4f7fab;
+        --goalias-bg: #f4f6f8;
+        --goalias-surface: #ffffff;
+        --goalias-text: #1c2b38;
+        --goalias-text-muted: #5c6b78;
+        --goalias-border: #d8dee3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        width: 300px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 13px;
+        color: var(--goalias-text);
+        background: var(--goalias-bg);
+        margin: 0;
+        padding: 14px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 12px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--goalias-border);
+      }
+
+      .brand img {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+      }
+
+      .brand span {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--goalias-navy);
+        letter-spacing: 0.2px;
+      }
+
+      label {
+        display: block;
+        margin-top: 8px;
+        font-weight: 600;
+        color: var(--goalias-text-muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      input[type="text"],
+      input[type="url"] {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 6px 8px;
+        margin-top: 3px;
+        border: 1px solid var(--goalias-border);
+        border-radius: 5px;
+        background: var(--goalias-surface);
+        color: var(--goalias-text);
+        font-size: 13px;
+      }
+
+      input[type="text"]:focus,
+      input[type="url"]:focus {
+        outline: none;
+        border-color: var(--goalias-blue-light);
+        box-shadow: 0 0 0 2px rgba(79, 127, 171, 0.25);
+      }
+
+      button {
+        margin-top: 10px;
+        margin-right: 6px;
+        padding: 7px 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        background: var(--goalias-navy);
+        color: #fff;
+      }
+
+      button:hover {
+        background: var(--goalias-navy-dark);
+      }
+
+      #quickCapture {
+        margin-top: 0;
+        width: 100%;
+        background: var(--goalias-copper);
+      }
+
+      #quickCapture:hover {
+        background: var(--goalias-copper-dark);
+      }
+
+      #confirmOverwrite {
+        background: var(--goalias-copper);
+      }
+
+      #confirmOverwrite:hover {
+        background: var(--goalias-copper-dark);
+      }
+
+      #cancelOverwrite {
+        background: var(--goalias-surface);
+        color: var(--goalias-text);
+        border: 1px solid var(--goalias-border);
+      }
+
+      #cancelOverwrite:hover {
+        background: var(--goalias-bg);
+      }
+
+      #duplicateWarning {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        background: #fdf1e8;
+        border: 1px solid var(--goalias-copper);
+        border-radius: 6px;
+      }
+
+      #duplicateMessage {
+        margin: 0 0 4px;
+        color: var(--goalias-text);
+      }
+
+      #status {
+        margin-top: 8px;
+        color: var(--goalias-blue-light);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="brand">
+      <img src="../icons/icon-48.png" alt="GoAlias" />
+      <span>GoAlias</span>
+    </div>
+
+    <button id="quickCapture" type="button">Save current tab as alias</button>
+
+    <form id="aliasForm">
+      <label for="alias">Alias</label>
+      <input type="text" id="alias" name="alias" required />
+
+      <label for="url">URL</label>
+      <input type="url" id="url" name="url" required />
+
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" />
+
+      <button type="submit">Save</button>
+    </form>
+
+    <div id="duplicateWarning">
+      <p id="duplicateMessage"></p>
+      <button id="confirmOverwrite" type="button">Overwrite</button>
+      <button id="cancelOverwrite" type="button">Cancel</button>
+    </div>
+
+    <p id="status"></p>
+
+    <script src="../storage.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

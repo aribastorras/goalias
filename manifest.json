@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "GoAlias",
+  "version": "0.1.0",
+  "description": "Type \"aa <alias>\" in the address bar to jump straight to a saved page.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "goalias@local",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
+  "permissions": ["storage", "activeTab"],
+  "background": {
+    "scripts": ["storage.js", "background.js"]
+  },
+  "omnibox": {
+    "keyword": "aa"
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "GoAlias",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png",
+      "48": "icons/icon-48.png"
+    }
+  },
+  "options_ui": {
+    "page": "options/options.html",
+    "open_in_tab": true
+  }
+}

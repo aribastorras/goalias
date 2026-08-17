@@ -1,0 +1,320 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>GoAlias</title>
+    <link rel="icon" type="image/png" href="../icons/icon-48.png" />
+    <style>
+      :root {
+        --goalias-navy: #16324f;
+        --goalias-navy-dark: #0e2338;
+        --goalias-copper: #c9682f;
+        --goalias-copper-dark: #a8501f;
+        --goalias-blue-light: #4f7fab;
+        --goalias-bg: #f4f6f8;
+        --goalias-surface: #ffffff;
+        --goalias-text: #1c2b38;
+        --goalias-text-muted: #5c6b78;
+        --goalias-border: #d8dee3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        font-size: 14px;
+        color: var(--goalias-text);
+        background: var(--goalias-bg);
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 28px 20px 40px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .brand img {
+        width: 40px;
+        height: 40px;
+        border-radius: 9px;
+      }
+
+      h1 {
+        font-size: 22px;
+        color: var(--goalias-navy);
+        margin: 0;
+        letter-spacing: 0.2px;
+      }
+
+      h2 {
+        font-size: 15px;
+        color: var(--goalias-navy);
+        margin: 0 0 12px;
+      }
+
+      section {
+        margin-bottom: 22px;
+        padding: 18px 18px 20px;
+        background: var(--goalias-surface);
+        border: 1px solid var(--goalias-border);
+        border-radius: 8px;
+      }
+
+      label {
+        display: inline-block;
+        min-width: 60px;
+        font-weight: 600;
+        color: var(--goalias-text-muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+      }
+
+      input[type="text"],
+      input[type="url"] {
+        padding: 6px 8px;
+        border: 1px solid var(--goalias-border);
+        border-radius: 5px;
+        background: var(--goalias-surface);
+        color: var(--goalias-text);
+        font-size: 13px;
+      }
+
+      input[type="text"]:focus,
+      input[type="url"]:focus {
+        outline: none;
+        border-color: var(--goalias-blue-light);
+        box-shadow: 0 0 0 2px rgba(79, 127, 171, 0.25);
+      }
+
+      #addForm {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 12px;
+      }
+
+      #addForm .field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1 1 160px;
+        min-width: 140px;
+      }
+
+      #addForm .field label {
+        min-width: 0;
+      }
+
+      #addForm .field input {
+        width: 100%;
+      }
+
+      #addForm button[type="submit"] {
+        flex: 0 0 auto;
+      }
+
+      #search {
+        width: 100%;
+        margin-bottom: 12px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        text-align: left;
+        padding: 8px 8px;
+        border-bottom: 1px solid var(--goalias-border);
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--goalias-text-muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.4px;
+        font-weight: 600;
+      }
+
+      td input[type="text"],
+      td input[type="url"] {
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      button + button {
+        margin-left: 8px;
+      }
+
+      button {
+        padding: 7px 12px;
+        border: none;
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        background: var(--goalias-navy);
+        color: #fff;
+      }
+
+      button:hover {
+        background: var(--goalias-navy-dark);
+      }
+
+      .import-export {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .file-input-label {
+        display: inline-block;
+        padding: 7px 12px;
+        border-radius: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        background: var(--goalias-navy);
+        color: #fff;
+        text-transform: none;
+        letter-spacing: normal;
+        min-width: 0;
+      }
+
+      .file-input-label:hover {
+        background: var(--goalias-navy-dark);
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      #addForm button[type="submit"] {
+        background: var(--goalias-copper);
+      }
+
+      #addForm button[type="submit"]:hover {
+        background: var(--goalias-copper-dark);
+      }
+
+      #confirmOverwrite,
+      #importConfirmOverwrite {
+        background: var(--goalias-copper);
+      }
+
+      #confirmOverwrite:hover,
+      #importConfirmOverwrite:hover {
+        background: var(--goalias-copper-dark);
+      }
+
+      #cancelOverwrite,
+      #importSkip {
+        background: var(--goalias-surface);
+        color: var(--goalias-text);
+        border: 1px solid var(--goalias-border);
+      }
+
+      #cancelOverwrite:hover,
+      #importSkip:hover {
+        background: var(--goalias-bg);
+      }
+
+      #duplicateWarning,
+      #importCollisionWarning {
+        display: none;
+        margin-top: 10px;
+        padding: 10px;
+        background: #fdf1e8;
+        border: 1px solid var(--goalias-copper);
+        border-radius: 6px;
+      }
+
+      #status {
+        color: var(--goalias-blue-light);
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="brand">
+      <img src="../icons/icon-48.png" alt="GoAlias" />
+      <h1>GoAlias</h1>
+    </div>
+
+    <section>
+      <h2>Add an alias</h2>
+      <form id="addForm">
+        <div class="field">
+          <label for="alias">Alias</label>
+          <input type="text" id="alias" required />
+        </div>
+        <div class="field">
+          <label for="url">URL</label>
+          <input type="url" id="url" required />
+        </div>
+        <div class="field">
+          <label for="title">Title</label>
+          <input type="text" id="title" />
+        </div>
+        <button type="submit">Save</button>
+      </form>
+      <div id="duplicateWarning">
+        <p id="duplicateMessage"></p>
+        <button id="confirmOverwrite" type="button">Overwrite</button>
+        <button id="cancelOverwrite" type="button">Cancel</button>
+      </div>
+      <p id="status"></p>
+    </section>
+
+    <section>
+      <h2>Saved aliases</h2>
+      <input type="text" id="search" placeholder="Search by alias or title" />
+      <table>
+        <thead>
+          <tr>
+            <th>Alias</th>
+            <th>Title</th>
+            <th>URL</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="aliasTableBody"></tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Import / Export</h2>
+      <div class="import-export">
+        <button id="exportButton" type="button">Export as JSON</button>
+        <label for="importInput" class="file-input-label">Import from JSON</label>
+        <input type="file" id="importInput" accept="application/json" class="visually-hidden" />
+      </div>
+      <div id="importCollisionWarning">
+        <p id="importCollisionMessage"></p>
+        <button id="importConfirmOverwrite" type="button">Overwrite</button>
+        <button id="importSkip" type="button">Skip</button>
+      </div>
+    </section>
+
+    <script src="../storage.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
