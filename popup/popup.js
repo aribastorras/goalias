@@ -8,6 +8,7 @@ const duplicateMessage = document.getElementById("duplicateMessage");
 const confirmOverwriteButton = document.getElementById("confirmOverwrite");
 const cancelOverwriteButton = document.getElementById("cancelOverwrite");
 const statusEl = document.getElementById("status");
+const manageAliasesButton = document.getElementById("manageAliases");
 
 let pendingSave = null;
 
@@ -17,6 +18,10 @@ quickCaptureButton.addEventListener("click", async () => {
   urlInput.value = tab.url || "";
   titleInput.value = tab.title || "";
   aliasInput.focus();
+});
+
+manageAliasesButton.addEventListener("click", () => {
+  browser.runtime.openOptionsPage();
 });
 
 form.addEventListener("submit", async (event) => {
